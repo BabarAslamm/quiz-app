@@ -1,45 +1,45 @@
-import React from 'react'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-
-
 
 function Home() {
 
   const navigate = useNavigate();
 
   const [name, setName] = useState('');
-  const [btnText, setBtnText] = useState('Start Quiz')
-  const [validationErrors, setValidationErrors] = useState({'name': ''});
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleStartQuiz = (e) => {
-    setBtnText('Processing...');
-    
-    if(!name.trim()) {
-      setValidationErrors({'name': 'Name is required'});
-      setBtnText('Start Quiz');
+    e.preventDefault();
+
+    const trimmedName = name.trim();
+    if (!trimmedName) {
+      setError('Name is required');
       return;
     }
 
-    setValidationErrors({'name': ''});
-    navigate('/quiz');
-
-    
+    setError('');
+    setLoading(true);
+    navigate('/quiz', { state: { name: trimmedName } });
   }
-  
+
   return (
     <div className="container text-center mt-5">
-        <h1 className="fw-bold mb-4">🚀 React Quiz Challenge</h1>
-        <input 
-          placeholder="Enter your name" 
-          className="form-control w-50 mx-auto " 
-          type="text" 
-          autocomplete="off" 
+      <h1 className="fw-bold mb-4">🚀 React Quiz Challenge</h1>
+      <form onSubmit={handleStartQuiz}>
+        <input
+          placeholder="Enter your name"
+          className="form-control w-50 mx-auto"
+          type="text"
+          autoComplete="off"
           value={name}
-          onChange={(e) => setName(e.target.value) }
-          />
-          <p className='text-danger'>{validationErrors.name}</p>
-        <button onClick={handleStartQuiz} className="btn btn-primary btn-lg">{btnText}</button>
+          onChange={(e) => setName(e.target.value)}
+        />
+        <p className="text-danger">{error}</p>
+        <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
+          {loading ? 'Processing...' : 'Start Quiz'}
+        </button>
+      </form>
     </div>
   )
 }
