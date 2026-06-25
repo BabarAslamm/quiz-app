@@ -14,5 +14,9 @@ export function QuizProvider({ children }) {
 }
 
 export function useQuiz() {
-  return useContext(QuizContext)
+  const context = useContext(QuizContext);
+  if (context === null) {
+    throw new Error('useQuiz must be used inside a <QuizProvider>');
+  }
+  return context;
 }
