@@ -4,17 +4,11 @@ const QuizContext = createContext(null);
 
 
 export function QuizProvider({ children }) {
+  const [name, setName] = useState('');
 
-
-  const [name, setName ] = useState('');
-
-  return(
-    <QuizContext.Provider value={{ name, setName}}>
-    { children }
+  return (
+    <QuizContext.Provider value={{ name, setName }}>
+      {children}
     </QuizContext.Provider>
-  )
-
+  );
 }
-
-
-
