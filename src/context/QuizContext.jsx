@@ -1,4 +1,4 @@
-import {  createContext, useState } from "react";
+import {  createContext, useContext, useState } from "react";
 
 const QuizContext = createContext(null);
 
@@ -11,4 +11,8 @@ export function QuizProvider({ children }) {
       {children}
     </QuizContext.Provider>
   );
+}
+
+export function useQuiz() {
+  return useContext(QuizContext)
 }
