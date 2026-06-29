@@ -2,18 +2,19 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useQuiz } from '../context/QuizContext';
 
+
 function Home() {
 
   const navigate = useNavigate();
 
-  const { name, setName } = useQuiz();
+  const { state, dispatch } = useQuiz();
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleStartQuiz = (e) => {
     e.preventDefault();
 
-    const trimmedName = name.trim();
+    const trimmedName = state.username.trim();
     if (!trimmedName) {
       setError('Name is required');
       return;
@@ -21,7 +22,7 @@ function Home() {
 
     setError('');
     setLoading(true);
-    navigate('/quiz', { state: { name: trimmedName } });
+    navigate('/quiz');
   }
 
   return (
@@ -33,8 +34,8 @@ function Home() {
           className="form-control w-50 mx-auto"
           type="text"
           autoComplete="off"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={state.username}
+          onChange={(e) => dispatch({type: "SET_NAME", payload: e.target.value})}
         />
         <p className="text-danger">{error}</p>
         <button type="submit" className="btn btn-primary btn-lg" disabled={loading}>
