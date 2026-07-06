@@ -1,47 +1,37 @@
-import {  createContext, useContext, useReducer } from "react";
-import questions from '../data/questions.json';
+import { createContext, useReducer } from "react";
+import questions from "../data/questions.json";
 
-const QuizContext = createContext(null);
+export const QuizContext = createContext();
 
 const initialState = {
   username: "",
-  index: 0,
-  score: 0,
-  completed: false,
-  questions,
-};
-
-
-function quizReducer(state, action) {
-  switch (action.type){
-
-    case "SET_NAME":
-      return {...state, username: action.payload };
-     
-
-    default:
-      return state;
-
-  }
-
+  questions
 }
 
-
-export function QuizProvider({ children }) {
+function quizReducer(state, action){
+  switch(action.type){
+    case "SET_NAME":
+      return {
+        ...state, 
+        username: action.payload
+      };
   
-  const [state, dispatch] = useReducer(quizReducer, initialState)
+    
+      default:
+        return state;
+    }
+  }
 
-  return (
+
+export default function QuizProvider({children}){
+  
+  const[state, dispatch] = useReducer(quizReducer, initialState);
+
+   return (
     <QuizContext.Provider value={{ state, dispatch }}>
       {children}
     </QuizContext.Provider>
-  );
+   )
 }
 
-export function useQuiz() {
-  const context = useContext(QuizContext);
-  if (context === null) {
-    throw new Error('useQuiz must be used inside a <QuizProvider>');
-  }
-  return context;
-}
+

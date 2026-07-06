@@ -7,7 +7,7 @@ import LeaderBoard from './pages/LeaderBoard.jsx';
 import Quiz from './pages/Quiz.jsx';
 const Result = lazy(() => import('./pages/Result.jsx'));
 
-import { QuizProvider } from './context/QuizContext'
+import  QuizProvider  from './context/QuizContext'
 
 
 function App() {

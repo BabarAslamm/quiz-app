@@ -1,17 +1,24 @@
 [
-  {
-    "question": "React is mainly used for?",
-    "options": ["Styling", "Mobile Apps", "Building UI", "None"],
-    "answer": "Building UI"
-  },
-  {
-    "question": "Which hook is used to store state in a function component?",
-    "options": ["useEffect", "useState", "useContext", "useRef"],
-    "answer": "useState"
-  },
-  {
-    "question": "What does JSX let you write?",
-    "options": ["Only CSS", "HTML-like code in JavaScript", "SQL queries", "Python"],
-    "answer": "HTML-like code in JavaScript"
-  }
+    {
+        "id": 1,
+        "question": "React is mainly used for?",
+        "options": [
+            "Styling",
+            "Mobile Apps",
+            "Building UI",
+            "None"
+        ],
+        "answer": "Building UI"
+    },
+    {
+        "id": 2,
+        "question": "Which hook is used for state?",
+        "options": [
+            "useEffect",
+            "useState",
+            "useMemo",
+            "useContext"
+        ],
+        "answer": "useState"
+    }
 ]
