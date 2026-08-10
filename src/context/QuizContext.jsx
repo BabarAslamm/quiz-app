@@ -5,6 +5,9 @@ export const QuizContext = createContext();
 
 const initialState = {
   username: "",
+  index: 0,
+  score: 0,
+  isCompleted: false,
   questions
 }
 
@@ -15,6 +18,16 @@ function quizReducer(state, action){
         ...state, 
         username: action.payload
       };
+      case "ANSWER":
+        return {
+          ...state,
+          index: state.index + 1,
+          score: action.payload ? state.score + 1 : state.score
+        };
+      case "FINISH":
+        return {
+          ...state, isCompleted: true
+        }
   
     
       default:
