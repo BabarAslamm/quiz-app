@@ -14,14 +14,14 @@ function App() {
   return (
     <QuizProvider>
       <BrowserRouter>
-        <Suspense fallback={<div>Loading...</div>}>
+        {/* <Suspense fallback={<div>Loading...</div>}> */}
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/leaderboard" element={<LeaderBoard />} />
             <Route path="/quiz" element={<Quiz />} />
             <Route path="/result" element={<Result />} />
           </Routes>
-        </Suspense>
+        {/* </Suspense> */}
       </BrowserRouter>
     </QuizProvider>
   );
