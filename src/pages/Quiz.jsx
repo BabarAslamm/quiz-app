@@ -32,7 +32,7 @@ function Quiz() {
   return (
     <div className="container mt-4">
         <Timer/>
-        <ProgressBar/>
+        <ProgressBar index={index} total={questions.length} />
         <QuestionCard 
           question = {current.question} 
           options  = {current.options}

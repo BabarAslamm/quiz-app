@@ -1,9 +1,12 @@
 import React from 'react'
 
-function ProgressBar() {
+function ProgressBar({index, total}) {
+  const progress = ((index + 1) / total ) * 100;
   return (
     <div className="progress mb-3">
-        <div className="progress-bar" style={{ width: '50%' }}>50%</div>
+        <div className="progress-bar" style={{ width: '50%' }}>
+         { Math.round(progress) }%
+        </div>
     </div>
   )
 }
