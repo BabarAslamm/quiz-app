@@ -1,19 +1,24 @@
 import React from 'react'
+import { useContext } from 'react'
+import { QuizContext } from '../context/QuizContext'
+import { Link } from 'react-router-dom';
 
 function Result() {
+    
+    const { state, dispatch }= useContext(QuizContext);
   return (
     <div className="container text-center mt-5">
         <div className="card shadow p-5">
             <h2 className="fw-bold mb-3">🎉 Quiz Completed!</h2>
-            <h4>Yahubaba, your score is:</h4>
-            <h1 className="text-success">1</h1>
+            <h4> {state.username}, your score is:</h4>
+            <h1 className="text-success"> {state.score} </h1>
             <div className="d-flex justify-content-center gap-3 mt-4">
-                <a href="LeaderBoard.html" className="btn btn-primary">
+                <Link to="/leaderboard" className="btn btn-primary">
                    View Leaderboard
-                </a>
-                <a href="Home.html" className="btn btn-warning">
+                </Link>
+                <Link to="/" className="btn btn-warning">
                     Home
-                </a>
+                </Link>
             </div>
         </div>
     </div>
