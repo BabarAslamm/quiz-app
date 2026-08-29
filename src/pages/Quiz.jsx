@@ -9,6 +9,7 @@ import  useTimer  from '../hook/useTimer'
 
 
 
+
 function Quiz() {
 
   const { state, dispatch} = useContext(QuizContext);
@@ -17,7 +18,14 @@ function Quiz() {
   const { time, reset } = useTimer(12);
    
 
-  
+  useEffect(() => {
+
+    if(time === 0){
+      dispatch({ type: "ANSWER", payload: false })
+      reset()
+    }
+
+  }, [time])
 
   const  handleSelectOption = (option) => {
     const isCorrect = option === questions[index].answer;
