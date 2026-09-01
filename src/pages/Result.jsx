@@ -1,11 +1,35 @@
 import React from 'react'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { QuizContext } from '../context/QuizContext'
 import { Link } from 'react-router-dom';
 
 function Result() {
     
     const { state, dispatch }= useContext(QuizContext);
+
+    const percentage = Math.round((state.score / state.questions.length) * 100);
+
+    
+
+    useEffect(() => {
+      const entry = {
+        username: state.username,
+        index: state.index,
+        score: state.score,
+        percentage,
+        date: new Date().toLocaleString()
+      }
+
+    const storedEntries = JSON.parse(localStorage.getItem('leaderboard'));
+    const storedEnteriesUpdated = [...storedEntries, entry];
+    
+    storedEnteriesUpdated.sort((a, b) => b.score - a.score)
+    
+    localStorage.setItem('leaderboard', JSON.stringify(storedEnteriesUpdated))
+
+
+    },[])
+
   return (
     <div className="container text-center mt-5">
         <div className="card shadow p-5">
@@ -16,7 +40,11 @@ function Result() {
                 <Link to="/leaderboard" className="btn btn-primary">
                    View Leaderboard
                 </Link>
-                <Link to="/" className="btn btn-warning">
+                <Link 
+                    to="/" 
+                    className="btn btn-warning"
+                    onClick={() => dispatch({ type: "RESET"  })}
+                >
                     Home
                 </Link>
             </div>
