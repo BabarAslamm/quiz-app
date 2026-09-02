@@ -20,7 +20,7 @@ function Result() {
         date: new Date().toLocaleString()
       }
 
-    const storedEntries = JSON.parse(localStorage.getItem('leaderboard'));
+    const storedEntries = JSON.parse(localStorage.getItem('leaderboard')) || [];
     const storedEnteriesUpdated = [...storedEntries, entry];
     
     storedEnteriesUpdated.sort((a, b) => b.score - a.score)
@@ -43,7 +43,7 @@ function Result() {
                 <Link 
                     to="/" 
                     className="btn btn-warning"
-                    onClick={() => dispatch({ type: "RESET"  })}
+                    onClick={() => dispatch({ type:"RESET"})}
                 >
                     Home
                 </Link>
