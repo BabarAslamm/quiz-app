@@ -1,6 +1,20 @@
-import React from 'react'
+import {useState, useEffect, use} from 'react'
+
 
 function LeaderBoard() {
+
+    const [ data, setData ] = useState([]);
+  
+    useEffect(() => {
+
+        const leaderboard = localStorage.getItem('leaderboard') || []; 
+        setData(leaderboard);
+       
+
+    }, [])
+
+     console.log('leaderboard', data)
+
   return (
     <div className="container text-center py-5">
         <h2 className="fw-bold mb-4">🏆 Leaderboard</h2>
@@ -15,20 +29,16 @@ function LeaderBoard() {
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>YahuBaba</td>
-                    <td>1</td>
-                    <td>100%</td>
-                    <td>01/01/2026, 00:00:00</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Sanchit</td>
-                    <td>1</td>
-                    <td>50%</td>
-                    <td>01/01/2026, 00:00:00</td>
-                </tr>
+                { data.map((entry, index) => (
+                    <tr key={index}>
+                        <td>{ index + 1 }</td>
+                        <td>{ entry.username }</td>
+                        <td>{ entry.score }</td>
+                        <td>{ entry.percentage }%</td>
+                        <td>{ entry.date }</td>
+                    </tr>
+                ))}
+                
             </tbody>
         </table>
         <button className="btn btn-danger mt-3">Clear Leaderboard</button>
