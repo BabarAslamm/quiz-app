@@ -7,7 +7,7 @@ function LeaderBoard() {
   
     useEffect(() => {
 
-        const leaderboard = localStorage.getItem('leaderboard') || []; 
+        const leaderboard = JSON.parse(localStorage.getItem('leaderboard')) || []; 
         setData(leaderboard);
        
 
