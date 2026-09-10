@@ -1,17 +1,20 @@
 import React from 'react'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { QuizContext } from '../context/QuizContext'
 import { Link } from 'react-router-dom';
 
 function Result() {
-    
+
     const { state, dispatch }= useContext(QuizContext);
 
     const percentage = Math.round((state.score / state.questions.length) * 100);
 
-    
+    const hasSaved = useRef(false);
 
     useEffect(() => {
+      if (hasSaved.current) return;
+      hasSaved.current = true;
+
       const entry = {
         username: state.username,
         index: state.index,

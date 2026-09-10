@@ -1,8 +1,6 @@
 import React from 'react'
 
 function QuestionCard({question, options, handleSelect}) {
-
-  console.log('question', question)
   return (
     <div className="card shadow p-4">
         <h4 className="fw-semibold">{question}</h4>

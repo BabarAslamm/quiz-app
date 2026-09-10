@@ -1,4 +1,4 @@
-import {useState, useEffect, use} from 'react'
+import {useState, useEffect} from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 
@@ -15,8 +15,6 @@ function LeaderBoard() {
        
 
     }, [])
-
-     console.log('leaderboard', data)
 
     const clearLeaderboard = (e) => {
 
@@ -66,7 +64,7 @@ return (
             <h2 className="fw-bold mb-4">🏆 Leaderboard</h2>
             <p className="text-muted">No leaderboard data available.</p>
 
-            <Link  to="/"  className="btn btn-warning" onClick={() => dispatch({ type:"RESET"})}>
+            <Link to="/" className="btn btn-warning" onClick={() => dispatch({ type:"RESET"})}>
                 Home
             </Link>
         </div>
