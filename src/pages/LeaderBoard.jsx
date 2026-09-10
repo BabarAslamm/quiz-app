@@ -1,10 +1,12 @@
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { QuizContext } from '../context/QuizContext';
 
 
 function LeaderBoard() {
 
     const navigate = useNavigate()
+    const { dispatch } = useContext(QuizContext);
 
     const [ data, setData ] = useState([]);
   
@@ -55,16 +57,21 @@ return (
                 </tbody>
             </table>
 
-            <button className="btn btn-danger mt-3" onClick={clearLeaderboard}>
-                Clear Leaderboard
-            </button>
+            <div className="d-flex justify-content-center gap-3 mt-3">
+                <Link to="/" className="btn btn-warning" onClick={() => dispatch({ type: "RESET" })}>
+                    Home
+                </Link>
+                <button className="btn btn-danger" onClick={clearLeaderboard}>
+                    Clear Leaderboard
+                </button>
+            </div>
         </div>
     ) : (
         <div className="container text-center py-5">
             <h2 className="fw-bold mb-4">🏆 Leaderboard</h2>
             <p className="text-muted">No leaderboard data available.</p>
 
-            <Link to="/" className="btn btn-warning" onClick={() => dispatch({ type:"RESET"})}>
+            <Link to="/" className="btn btn-warning" onClick={() => dispatch({ type: "RESET" })}>
                 Home
             </Link>
         </div>
